@@ -8,10 +8,18 @@
 
 #include "../process_manager.h"
 
-#ifdef DEBUG
-#   define WEB_SERVER_EXT_NAME "../web_server_extention/web_server_extentiond"
-#else
-#   define WEB_SERVER_EXT_NAME "../web_server_extention/web_server_extention"
+#ifndef Q_OS_WIN32 > linux, mac...
+#   ifdef DEBUG
+#      define WEB_SERVER_EXT_NAME "../web_server_extention/web_server_extentiond"
+#   else
+#      define WEB_SERVER_EXT_NAME "../web_server_extention/web_server_extention"
+#   endif
+#else //Q_OS_WIN32 > mingw
+#   ifdef DEBUG
+#      define WEB_SERVER_EXT_NAME "../../web_server_extention/debug/web_server_extentiond"
+#   else
+#      define WEB_SERVER_EXT_NAME "../../web_server_extention/release/web_server_extention"
+#   endif
 #endif
 
 class ProcessManagerPrivate: public QObject
@@ -24,7 +32,6 @@ public:
         // server
         connect(&server, SIGNAL(newConnection()),
                 this, SLOT(onServerNewConnection()));
-
 
         // extention
         webServerExtention.setWorkingDirectory(QCoreApplication::applicationDirPath());
