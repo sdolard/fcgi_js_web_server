@@ -1,3 +1,3 @@
 TEMPLATE=subdirs
-SUBDIRS = web_server_core \
-    web_server_extension
+SUBDIRS = fcgi_js_web_server_core \
+    fcgi_js_web_server_extension
