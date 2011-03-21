@@ -1,0 +1,6 @@
+POC, under writting
+
+# DEFINES
+    DEV
+        - On core, do not run extension. You'll have to run core manually
+        - On extension, do not quit, when core is no more available (QLocalServer unavailability)
